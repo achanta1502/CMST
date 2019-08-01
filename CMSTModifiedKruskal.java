@@ -1,3 +1,7 @@
+/*
+author : Achanta pavan kumar
+copyright 2019
+*/
 package kruskal;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class CMSTModifiedKruskal {
         return find(parent, edge.get('s')) == find(parent, edge.get('d'));
     }
 
+    //sort the edges based on weights
     private ArrayList<HashMap<Character, Integer>> sort(ArrayList<HashMap<Character, Integer>>edgesMap) {
         for(int i = 0; i < edgesMap.size(); i++) {
           for(int j = i; j < edgesMap.size(); j++) {
@@ -36,7 +41,7 @@ public class CMSTModifiedKruskal {
         }
         return edgesMap;
     }
-    //fixme define it
+    //check for constraints. sum of weight of nodes less than max_weight
     private boolean isConstraints(int root, List<ArrayList<Integer>> st_list,
         HashMap<Integer,Integer> weights, int max_nodes,
         HashMap<Character,Integer> edge) {
@@ -78,20 +83,22 @@ public class CMSTModifiedKruskal {
         return true;
     }
 
+    //subtree total weight
     private void subtree_weight(List<ArrayList<Integer>> st_list, int vertex,
-        HashMap<Integer,Integer> weights, int st_weight) {
-        st_weight += weights.get(vertex);
+        HashMap<Integer,Integer> weights, int st_wt) {
+        st_wt += weights.get(vertex);
         for(ArrayList<Integer> st: st_list) {
             if(st.contains(vertex)) {
                 for(int v: st) {
-                    st_weight += weights.get(v);
+                    st_wt += weights.get(v);
                 }
-                st_weight -= weights.get(vertex);
+                st_wt -= weights.get(vertex);
                 break;
             }
         }
     }
 
+    //kruskal algorithm to get minimum spanning tree
     protected int modifiedKruskal(int root, HashMap<Integer,Integer> wts, int max_nodes) {
         //keep track of subtree graphs connected
         List<ArrayList<Integer>> subtrees = new ArrayList<>();

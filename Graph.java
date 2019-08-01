@@ -1,3 +1,7 @@
+/*
+author : Achanta pavan kumar
+copyright 2019
+*/
 package kruskal;
 
 import java.util.ArrayList;
@@ -56,10 +60,11 @@ public class Graph {
     return graph[row][col];
   }
 
+  //Get edgeweights in hashmap
   protected ArrayList<HashMap<Character, Integer>> getEdgesWeights() {
     ArrayList<HashMap<Character,Integer>> edgesMap = new ArrayList<>();
     for(int i = 0; i < nodes; i++) {
-      for(int j = i; j < nodes; j++) {
+      for(int j = 0; j < nodes; j++) {
           if (graph[i][j] == 0) {
             continue;
           }
@@ -79,7 +84,9 @@ public class Graph {
     StringBuilder graphPrint = new StringBuilder();
     for(int i = 0; i < nodes; i++) {
       for(int j = 0; j<nodes; j++) {
-        graphPrint.append(graph[i][j] + "\t");
+        graphPrint.append(graph[i][j] + " ");
+        if(graph[i][j]/10 ==0)
+          graphPrint.append(" ");
       }
       graphPrint.append("\n");
     }
